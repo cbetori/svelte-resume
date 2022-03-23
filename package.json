@@ -3,10 +3,9 @@
 	"version": "0.0.1",
 	"license": "MIT",
 	"scripts": {
-		"build-webpack": "cross-env NODE_ENV=production webpack",
 		"start": "webpack serve",
 		"dev": "svelte-kit dev",
-		"build": "svelte-kit build",
+		"build": "webpack --config webpack.config.cjs",
 		"package": "svelte-kit package",
 		"preview": "svelte-kit preview",
 		"lint": "prettier --ignore-path .gitignore --check --plugin-search-dir=. . && eslint --ignore-path .gitignore .",
