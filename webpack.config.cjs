@@ -12,7 +12,7 @@ module.exports = {
 		path: __dirname + '/dist',
 		filename: '[name].js',
 		chunkFilename: '[name].[id].js',
-		publicPath: 'https://svelte-resume-lrytrimzv-cbetori.vercel.app/'
+		publicPath: 'https://svelte-resume-phi.vercel.app/'
 	},
 	resolve: {
 		alias: {
