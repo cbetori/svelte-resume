@@ -12,7 +12,7 @@ module.exports = {
 	output: {
 		path: path.resolve(__dirname, 'dist'),
 		filename: 'bundle.js',
-		publicPath: prod ? 'https://svelte-resume-5s8vck6r0-cbetori.vercel.app/' : '/'
+		publicPath: prod ? 'https://svelte-resume-5s8vck6r0-cbetori.vercel.app/'
 	},
 	resolve: {
 		alias: {
