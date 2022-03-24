@@ -5,7 +5,7 @@ const path = require('path');
 
 const mode = process.env.NODE_ENV || 'development';
 const prod = mode === 'production';
-
+console.log(mode);
 module.exports = {
 	entry: { bundle: ['./src/index.js'] },
 	output: {
@@ -49,6 +49,7 @@ module.exports = {
 	devServer: {
 		port: 8081
 	},
+	mode,
 	plugins: [
 		new ModuleFederationPlugin({
 			name: 'resume',
@@ -65,6 +66,5 @@ module.exports = {
 		new HtmlWebPackPlugin({
 			template: './src/app.html'
 		})
-	],
-	devtool: prod ? false : 'source-map'
+	]
 };
