@@ -8,6 +8,11 @@ const prod = mode === 'production';
 
 module.exports = {
 	entry: { bundle: ['./src/index.js'] },
+	output: {
+		path: path.resolve(__dirname, 'public'),
+		filename: 'bundle.js',
+		publicPath: '/'
+	},
 	resolve: {
 		alias: {
 			svelte: path.resolve('node_modules', 'svelte')
@@ -44,7 +49,6 @@ module.exports = {
 	devServer: {
 		port: 8081
 	},
-	mode,
 	plugins: [
 		new ModuleFederationPlugin({
 			name: 'resume',
