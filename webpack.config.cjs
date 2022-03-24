@@ -47,10 +47,6 @@ module.exports = {
 			}
 		]
 	},
-	devServer: {
-		port: 8081
-	},
-	mode,
 	plugins: [
 		new ModuleFederationPlugin({
 			name: 'resume',
