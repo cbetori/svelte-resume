@@ -36,19 +36,11 @@ module.exports = {
 			},
 			{
 				test: /\.css$/,
-				use: [
-					/**
-					 * MiniCssExtractPlugin doesn't support HMR.
-					 * For developing, use 'style-loader' instead.
-					 * */
-					prod ? MiniCssExtractPlugin.loader : 'style-loader',
-					'css-loader',
-					'postcss-loader'
-				]
+				use: ['style-loader', 'css-loader', 'postcss-loader']
 			}
 		]
 	},
-	mode: 'production',
+	mode: 'development',
 	plugins: [
 		new ModuleFederationPlugin({
 			name: 'resume',
@@ -58,9 +50,6 @@ module.exports = {
 				'./Resume': './src/routes/index.svelte'
 			},
 			shared: require('./package.json').dependencies
-		}),
-		new MiniCssExtractPlugin({
-			filename: './src/resume.css'
 		}),
 		new HtmlWebPackPlugin({
 			template: './src/app.html'
