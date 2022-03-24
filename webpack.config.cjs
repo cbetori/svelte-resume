@@ -6,7 +6,6 @@ const path = require('path');
 const mode = process.env.NODE_ENV || 'development';
 const prod = mode === 'production';
 
-console.log(mode);
 module.exports = {
 	entry: { bundle: ['./src/index.js'] },
 	output: {
@@ -24,6 +23,13 @@ module.exports = {
 	},
 	module: {
 		rules: [
+			{
+				test: /\.m?js$/,
+				type: 'javascript/auto',
+				resolve: {
+					fullySpecified: false
+				}
+			},
 			{
 				test: /\.svelte$/,
 				use: {
@@ -56,13 +62,11 @@ module.exports = {
 			exposes: {
 				'./Resume': './src/routes/index.svelte'
 			},
-			shared: require('./package.json').dependencies
+			shared: []
 		}),
 		new MiniCssExtractPlugin({
 			filename: '[name].css'
-		}),
-		new HtmlWebPackPlugin({
-			template: './src/index.html'
 		})
-	]
+	],
+	devtool: prod ? false : 'source-map'
 };
