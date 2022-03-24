@@ -10,9 +10,10 @@ console.log(mode);
 module.exports = {
 	entry: { bundle: ['./src/index.js'] },
 	output: {
-		path: path.resolve(__dirname, 'dist'),
-		filename: 'bundle.js',
-		publicPath: 'https://svelte-resume-5s8vck6r0-cbetori.vercel.app/'
+		path: __dirname + '/dist',
+		filename: '[name].js',
+		chunkFilename: '[name].[id].js',
+		publicPath: 'auto'
 	},
 	resolve: {
 		alias: {
@@ -35,11 +36,18 @@ module.exports = {
 			},
 			{
 				test: /\.css$/,
-				use: ['style-loader', 'css-loader', 'postcss-loader']
+				use: [
+					/**
+					 * MiniCssExtractPlugin doesn't support HMR.
+					 * For developing, use 'style-loader' instead.
+					 * */
+					prod ? MiniCssExtractPlugin.loader : 'style-loader',
+					'css-loader'
+				]
 			}
 		]
 	},
-	mode: 'development',
+	mode,
 	plugins: [
 		new ModuleFederationPlugin({
 			name: 'resume',
@@ -50,8 +58,11 @@ module.exports = {
 			},
 			shared: require('./package.json').dependencies
 		}),
+		new MiniCssExtractPlugin({
+			filename: '[name].css'
+		}),
 		new HtmlWebPackPlugin({
-			template: './src/app.html'
+			template: './src/index.html'
 		})
 	]
 };
