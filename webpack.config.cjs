@@ -14,7 +14,6 @@ module.exports = {
 		filename: 'bundle.js',
 		publicPath: 'https://svelte-resume-5s8vck6r0-cbetori.vercel.app/'
 	},
-	devtool: 'hidden-source-map',
 	resolve: {
 		alias: {
 			svelte: path.resolve('node_modules', 'svelte')
