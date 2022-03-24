@@ -5,7 +5,7 @@ const path = require('path');
 
 const mode = process.env.NODE_ENV || 'development';
 const prod = mode === 'production';
-const production = 'production';
+
 console.log(mode);
 module.exports = {
 	entry: { bundle: ['./src/index.js'] },
@@ -14,6 +14,7 @@ module.exports = {
 		filename: 'bundle.js',
 		publicPath: 'https://svelte-resume-5s8vck6r0-cbetori.vercel.app/'
 	},
+	devtool: 'hidden-source-map',
 	resolve: {
 		alias: {
 			svelte: path.resolve('node_modules', 'svelte')
@@ -47,6 +48,7 @@ module.exports = {
 			}
 		]
 	},
+	mode: 'production',
 	plugins: [
 		new ModuleFederationPlugin({
 			name: 'resume',
